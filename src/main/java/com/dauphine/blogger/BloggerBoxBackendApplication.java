@@ -3,7 +3,22 @@ package com.dauphine.blogger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+
 @SpringBootApplication
+@OpenAPIDefinition(
+		info = @Info(
+				title = "Bloggr box backend",
+				description = "Blogger box endpoints ans apis",
+				contact = @Contact(name = "Noam", email = "noam_tordjman@hotmail.com"),
+				version = "1.0.0"
+				)
+		)
+
+
+
 public class BloggerBoxBackendApplication {
 
 	public static void main(String[] args) {
