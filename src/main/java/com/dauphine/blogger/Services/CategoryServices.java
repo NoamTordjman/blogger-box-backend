@@ -1,6 +1,7 @@
 package com.dauphine.blogger.Services;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -13,11 +14,11 @@ public interface CategoryServices {
 
 	public List<Category> RetrieveCategories();
 
-	public Category getCategoryById(Long id);
+	public Category getCategoryById(UUID id);
 
-	public Category updateCategoryName(Long id, Category category);
+	public Category updateCategoryName(UUID id, String name);
 
-	public Category createCategory(Category category);
+	public Category createCategory(String name);
 
-	public void deleteCategory(Long id);
+	public boolean deleteCategory(UUID id);
 }

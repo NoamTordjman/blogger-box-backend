@@ -1,6 +1,7 @@
 package com.dauphine.blogger.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,7 +24,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 public class CategoryController {
 
-		@Autowired
 		private final CategoryServices categoryService;
 		
 		public CategoryController(CategoryServices categoryService) {
@@ -38,26 +38,26 @@ public class CategoryController {
 
 	    @GetMapping("/{id}")
 	    @Operation(summary = "Retrieve a category by id", description = "Retourne la catégorie avec l'id spécifique")
-	    public Category getCategoryById(@PathVariable Long id) {
+	    public Category getCategoryById(@PathVariable UUID id) {
 	        return categoryService.getCategoryById(id);
 	    }
 
 	    @PostMapping
 	    @Operation(summary = "Create a new category", description = "Crée une nouvelle catégorie")
-	    public Category createCategory(@RequestBody Category category) {
-	        return categoryService.createCategory(category);
+	    public Category createCategory(@RequestBody String name) {
+	        return categoryService.createCategory(name);
 	    }
 
 	    @PutMapping("/{id}")
 	    @Operation(summary = "Update the name of a category", description = "met à jour le nom d'une catégorie avec l'id spécifié")
-	    public Category updateCategoryName(@PathVariable Long id, @RequestBody Category category) {
-	        return categoryService.updateCategoryName(id, category);
+	    public Category uupdateCategoryName(UUID id, String name) {
+	        return categoryService.updateCategoryName(id, name);
 	    }
 
 	    @DeleteMapping("/{id}")
 	    @Operation(summary = "Delete an existing category", description = "Supprime un compte avec son id")
-	    public void deleteCategory(@PathVariable Long id) {
-	        categoryService.deleteCategory(id);
+	    public boolean deleteCategory(@PathVariable UUID id) {
+	        return categoryService.deleteCategory(id);
 	    }
    
 	    

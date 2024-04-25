@@ -1,6 +1,7 @@
 package com.dauphine.blogger.Services;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -10,12 +11,14 @@ public interface PostServices {
 
 	List<Post> RetrieveByCreationDate();
 
-	List<Post> RetrieveCategory();
+	List<Post> RetrievePost();
+	
+	public Post getPostById(UUID id);
 
-	public Post createPost();
+	public Post createPost(String title);
 
-	public Post updatePost();
+	public Post updatePost(UUID id, String title);
 
-	public void deletePost();
+	public boolean deletePost(UUID id);
 
 }

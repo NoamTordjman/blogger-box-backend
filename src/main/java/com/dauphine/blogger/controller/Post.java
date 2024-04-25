@@ -1,29 +1,56 @@
 package com.dauphine.blogger.controller;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+ 
 
+@Entity
+@Table(name="Post")
 public class Post {
 
+	@Column(name="id")
+	@Id
+	private UUID id;
 	
-	private int id;
+	@Column(name="title")
 	private String title;
-	private String content;
-	private int category_id;
-	private LocalDateTime date_création;
 	
-	public Post(int id, String title, String content, int category_id, LocalDateTime date_création) {
+	@Column(name="content")
+	private String content;
+	
+	@JoinColumn(name="category_id")
+	@ManyToOne
+	private Category category;
+	
+	@Column(name = "created_date")
+	private LocalDateTime date_creation;
+	
+	public Post(UUID id, String title, String content, Category category) {
 		this.id = id;
 		this.title = title;
 		this.content = content;
-		this.category_id = category_id;
-		this.date_création = date_création;
+		this.category = category;
+		this.date_creation = LocalDateTime.now();
+	}
+	
+	public Post() {
+	}
+	
+	public Post(String title) {
+		this.title = title;
 	}
 
-	public int getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 
@@ -43,20 +70,20 @@ public class Post {
 		this.content = content;
 	}
 
-	public int getCategory_id() {
-		return category_id;
+	public Category getCategory() {
+		return category;
 	}
 
-	public void setCategory_id(int category_id) {
-		this.category_id = category_id;
+	public void setCategory_id(Category category) {
+		this.category = category;
 	}
 
-	public LocalDateTime getDate_création() {
-		return date_création;
+	public LocalDateTime getDate_creation() {
+		return date_creation;
 	}
 
-	public void setDate_création(LocalDateTime date_création) {
-		this.date_création = date_création;
+	public void setDate_creation(LocalDateTime date_creation) {
+		this.date_creation = date_creation;
 	}
 	
 	

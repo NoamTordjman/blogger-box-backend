@@ -1,6 +1,7 @@
 package com.dauphine.blogger.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,26 +39,26 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 	    @GetMapping("/category/{categoryId}")
 	    @Operation(summary = "Retrieve all posts per a category", description = "Retourne une liste de post appartenant à la catégorie")
-	    public List<Post> RetrieveCategory(@PathVariable Long categoryId) {
-	        return postServices.RetrieveCategory();
+	    public List<Post> RetrievePost(@PathVariable Long categoryId) {
+	        return postServices.RetrievePost();
 	    }
 
 	    @PostMapping
 	    @Operation(summary = "Create a new post", description = "Créer un nouveau post")
-	    public Post createPost(@RequestBody Post Post) {
-	        return postServices.createPost();
+	    public Post createPost(@RequestBody String title) {
+	        return postServices.createPost(title);
 	    }
 
 	    @PutMapping("/{id}")
 	    @Operation(summary = "Update an existing post", description = "Mettre à jour le post avec un ID spéifique")
-	    public Post updatePost(@PathVariable Long id, @RequestBody Post Post) {
-	        return postServices.updatePost();
+	    public Post updatePost(@PathVariable UUID id, @RequestBody String title) {
+	        return postServices.updatePost(id, title);
 	    }
 
 	    @DeleteMapping("/{id}")
 	    @Operation(summary = "Delete an existing post", description = "Supprimé le post avec un ID spécifique")
-	    public void deletePost(@PathVariable Long id) {
-	    	postServices.deletePost();
+	    public boolean deletePost(@PathVariable UUID id) {
+	    	return postServices.deletePost(id);
 	    }
 	}
 
